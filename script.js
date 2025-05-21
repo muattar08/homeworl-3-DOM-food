@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // === Вкладки и слайдер ===
     const tabs = document.querySelectorAll('.tabheader__item'),
           tabContents = document.querySelectorAll('.tabcontent'),
           slides = document.querySelectorAll('.offer__slide'),
@@ -10,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let slideIndex = 0;
 
-    // Скрыть контент и слайды
     function hideTabContent() {
         tabContents.forEach(item => item.classList.add('hide', 'fade'));
         slides.forEach(item => {
@@ -19,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
         tabs.forEach(item => item.classList.remove('tabheader__item_active'));
     }
 
-    // Показать вкладку и слайд
     function showTabContent(i = 0) {
         hideTabContent();
         tabContents[i].classList.remove('hide');
@@ -29,18 +26,14 @@ document.addEventListener('DOMContentLoaded', () => {
         current.textContent = slides.length < 10 ? `0${slideIndex + 1}` : slideIndex + 1;
     }
 
-    // Установить общее количество слайдов
     total.textContent = slides.length < 10 ? `0${slides.length}` : slides.length;
 
-    // Инициализация
     showTabContent(0);
 
-    // Обработчик клика по вкладкам
     tabs.forEach((tab, index) => {
         tab.onclick = () => showTabContent(index);
     });
 
-    // Переключение слайдов стрелками
     function plusSlides(n) {
         let newIndex = slideIndex + n;
         if (newIndex >= slides.length) newIndex = 0;
@@ -51,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
     prev.addEventListener('click', () => plusSlides(-1));
     next.addEventListener('click', () => plusSlides(1));
 
-    // === Форма ===
     const orderForm = document.forms.order__form;
     orderForm.onsubmit = (event) => {
         event.preventDefault();
